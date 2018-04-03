@@ -23,6 +23,9 @@ $(function() {
 
 		// Tracks how many moves have been made
 		this.counter = 1;
+
+		// Storing winner
+		this.winner = null;
 	};
 
 	Board.prototype.nextPlayer = function() {
@@ -33,6 +36,35 @@ $(function() {
 			this.currentPlayer = this.player2;
 		}
 		this.counter += 1;
+		if(this.counter>5){this.checkWinner()}
+	};
+
+	Board.prototype.checkWinner = function() {
+		var b1=this.$boxes[0].innerHTML;
+		var b2=this.$boxes[1].innerHTML;
+		var b3=this.$boxes[2].innerHTML;
+		var b4=this.$boxes[3].innerHTML;
+		var b5=this.$boxes[4].innerHTML;
+		var b6=this.$boxes[5].innerHTML;
+		var b7=this.$boxes[6].innerHTML;
+		var b8=this.$boxes[7].innerHTML;
+		var b9=this.$boxes[8].innerHTML;
+		if((b1==b2&&b2==b3&&b3!='&nbsp;')||(b4==b5&&b5==b6&&b6!='&nbsp;')||(b7==b8&&b8==b9&&b9!='&nbsp;')||(b1==b4&&b4==b7&&b7!='&nbsp;')||(b2==b5&&b5==b8&&b8!='&nbsp;')||(b3==b6&&b6==b9&&b9!='&nbsp;')||(b1==b5&&b5==b9&&b9!='&nbsp;')||(b3==b5&&b5==b7&&b7!='&nbsp;')) {
+			var win;
+			if(this.currentPlayer.mark=='X') {
+				win = confirm('O wins! Would you like to play again?');
+			} else {
+				win = confirm('X wins! Would you like to play again?');
+			}
+			if(win) {
+				for(var i=0; i<this.$boxes.length; i++) {
+					this.$boxes[i].innerHTML='&nbsp;';
+					this.currentPlayer = this.player1;
+					this.counter = 1;
+					this.winner = null;
+				}
+			}
+		}
 	};
 
 	// `Board.prototype.init` initializes our event listeners
