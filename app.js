@@ -18,6 +18,9 @@ $(function() {
 		// storing reset button
 		this.$reset = $('#reset');
 
+		// storing turn div
+		this.$turn = $('#turn');
+
 		// Initially setting a current player
 		this.currentPlayer = this.player1;
 
@@ -29,16 +32,19 @@ $(function() {
 	};
 
 	Board.prototype.nextPlayer = function() {
-		console.log('next player called')
 		// Checking this.counter to toggle this.currentPlayer
+		var turn;
 		if (this.counter % 2 === 0) {
 			this.currentPlayer = this.player1;
+			turn="X's turn";
 		} else {
 			this.currentPlayer = this.player2;
+			turn="O's turn";
 		}
 		this.counter += 1;
-		console.log('this curent player in next player is now:', this.currentPlayer)
 		if(this.counter>5){this.checkWinner()}
+			console.log(this.$turn);
+		this.$turn[0].innerHTML=turn;
 	};
 
 	Board.prototype.checkWinner = function() {
@@ -90,6 +96,7 @@ $(function() {
 			}
 			this.counter = 1;
 			this.winner = null;
+			console.log(_this.$reset)
 		});
 	};
 

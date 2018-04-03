@@ -49,22 +49,23 @@
   margin-right: 20px;
 }
 
-h1 {
+h1, h3 {
   text-align: center;
   padding-bottom: 30px;
 }
 
+h3 {
+  width: 20%;
+  margin: 20px auto;
+  background: lightgreen;
+  padding: 5px;
+  border-radius: 20px;
+}
 
-.red {
-  background: #FF9999;
-}
-.blue {
-  background: #80B2FF;
-}
 #reset {
   height: 40px;
   width: 100px;
-  background-color: green;
+  background-color: red;
   display: block;
   border: 5px solid black;
   margin: auto;
