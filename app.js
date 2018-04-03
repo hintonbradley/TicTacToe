@@ -29,6 +29,7 @@ $(function() {
 	};
 
 	Board.prototype.nextPlayer = function() {
+		console.log('next player called')
 		// Checking this.counter to toggle this.currentPlayer
 		if (this.counter % 2 === 0) {
 			this.currentPlayer = this.player1;
@@ -36,6 +37,7 @@ $(function() {
 			this.currentPlayer = this.player2;
 		}
 		this.counter += 1;
+		console.log('this curent player in next player is now:', this.currentPlayer)
 		if(this.counter>5){this.checkWinner()}
 	};
 
@@ -86,6 +88,8 @@ $(function() {
 			for(var i=0;i<_this.$boxes.length; i++){
 				_this.$boxes[i].innerHTML='&nbsp;';
 			}
+			this.counter = 1;
+			this.winner = null;
 		});
 	};
 
